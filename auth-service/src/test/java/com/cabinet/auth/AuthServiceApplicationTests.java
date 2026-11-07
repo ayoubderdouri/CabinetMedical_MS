@@ -17,7 +17,7 @@ import com.cabinet.auth.dto.TokenResponse;
 import com.cabinet.auth.repository.UserAccountRepository;
 import com.cabinet.auth.service.AuthService;
 
-@SpringBootTest
+@SpringBootTest(properties = "security.jwt.secret=test-signing-key-with-at-least-32-bytes")
 class AuthServiceApplicationTests {
 
 	@Autowired

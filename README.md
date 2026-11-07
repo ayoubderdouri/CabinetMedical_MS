@@ -11,17 +11,18 @@ The project contains three independently deployable Spring Boot services. Each s
 
 ## Run the complete stack
 
-Install Docker Desktop, then from the repository root run:
+Install Docker Desktop, copy `.env.example` to `.env`, replace both placeholder values with strong random values, then from the repository root run:
 
 ```powershell
+Copy-Item .env.example .env
 docker compose up --build
 ```
 
 The gateway is available at `http://localhost:8080`. PostgreSQL stores the three services' data in separate databases on a shared local database container. Data is retained in the `postgres_data` volume.
 
-The Compose defaults are for local development only. Before exposing this stack, set strong, unique values for `JWT_SECRET` and `POSTGRES_PASSWORD`, configure TLS at the gateway, and replace `DDL_AUTO=update` with a managed schema migration strategy.
+The Compose stack requires `JWT_SECRET` (at least 32 UTF-8 bytes for HS256) and `POSTGRES_PASSWORD`; actual secrets are intentionally not included in the repository. Before exposing the stack, configure TLS at the gateway and replace `DDL_AUTO=update` with a managed schema migration strategy.
 
-To run a service without Docker, run `.\mvnw.cmd spring-boot:run` from that service's directory. It uses an in-memory H2 database by default. Local ports are 8081 (auth), 8082 (patient), and 8083 (appointment).
+To run a service without Docker, set `$env:JWT_SECRET` to the same random value for each service, then run `.\mvnw.cmd spring-boot:run` from that service's directory. Each service uses an in-memory H2 database by default. Local ports are 8081 (auth), 8082 (patient), and 8083 (appointment).
 
 ## API examples
 

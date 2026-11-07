@@ -16,7 +16,7 @@ import com.cabinet.patient.enums.GroupeSanguin;
 import com.cabinet.patient.exception.ResourceNotFoundException;
 import com.cabinet.patient.service.PatientService;
 
-@SpringBootTest
+@SpringBootTest(properties = "security.jwt.secret=test-signing-key-with-at-least-32-bytes")
 class PatientServiceApplicationTests {
 
 	@Autowired

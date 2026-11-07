@@ -13,7 +13,7 @@ import com.cabinet.appointment.dto.AppointmentResponse;
 import com.cabinet.appointment.model.AppointmentStatus;
 import com.cabinet.appointment.service.AppointmentService;
 
-@SpringBootTest
+@SpringBootTest(properties = "security.jwt.secret=test-signing-key-with-at-least-32-bytes")
 class AppointmentServiceApplicationTests {
 
 	@Autowired
